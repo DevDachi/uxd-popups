@@ -1,0 +1,161 @@
+﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:UXDivers.Popups.Maui.DemoApp"
+             xmlns:uxdc="clr-namespace:UXDivers.Popups.Maui.Controls;assembly=UXDivers.Popups.Maui"
+             x:Class="UXDivers.Popups.Maui.DemoApp.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <uxdc:DarkTheme />
+                <uxdc:PopupStyles />
+            </ResourceDictionary.MergedDictionaries>
+            
+            <x:String x:Key="IconsFontFamily">MaterialSymbols</x:String>
+            <x:String x:Key="AppFontFamily">Manrope</x:String>
+            <x:String x:Key="AppSemiBoldFamily">ManropeSemibold</x:String>
+            
+            <x:Static x:Key="UXDPopupsCloseIconButton" Member="local:MaterialSymbolsFont.Close" />
+            <x:Static x:Key="UXDPopupsCheckCircleIconButton" Member="local:MaterialSymbolsFont.Check_circle" />
+
+            <!--  ICON COLORS  -->
+            <Color x:Key="IconOrange">#FF7134</Color>
+            <Color x:Key="IconMagenta">#FF1AD9</Color>
+            <Color x:Key="IconCyan">#05D9FF</Color>
+            <Color x:Key="IconGreen">#2FFF74</Color>
+            <Color x:Key="IconPurple">#BD3BFF</Color>
+            <Color x:Key="IconBlue">#1C7BFF</Color>   
+            <Color x:Key="IconLime">#C8FF01</Color>
+            <Color x:Key="IconRed">#FF0000</Color>
+            <Color x:Key="IconDarkBlue">#6422FF</Color>
+
+
+            <!-- LIST USER DATA TEMPLATE -->
+            <Style
+                TargetType="uxdc:ListActionPopup"
+                BasedOn="{StaticResource DefaultListActionPopupStyle}"
+                >
+                <Setter Property="ItemDataTemplate">
+                    <DataTemplate>
+                        <RadioButton     
+                            x:DataType="local:ListActionItem"
+                            IsChecked="{ Binding IsSelected }"
+                            >
+                            <RadioButton.ControlTemplate>
+                                <ControlTemplate>
+                                    <Grid
+                                        ColumnDefinitions="*, Auto"
+                                        ColumnSpacing="{DynamicResource SpacingSmall}"
+                                        >
+                                        
+                                        <ContentPresenter
+                                            />
+                                        
+                                        <!-- Selection -->
+                                        <Border 
+                                            x:Name="check"
+                                            Grid.Column="2"
+                                            Grid.RowSpan="2"
+                                            StrokeShape="RoundRectangle 10"
+                                            BackgroundColor="{ StaticResource PrimaryColor}"
+                                            HeightRequest="20"
+                                            WidthRequest="20"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="Center"
+                                            IsVisible="{ Binding IsChecked, Source={RelativeSource TemplatedParent}, x:DataType=RadioButton }"
+                                            >
+                                            <!-- Icon -->
+                                            <Label 
+                                                WidthRequest="12"
+                                                HeightRequest="12"
+                                                Text="{ x:Static local:MaterialSymbolsFont.Check }"
+                                                FontFamily="{ DynamicResource IconsFontFamily}"
+                                                TextColor="{DynamicResource BackgroundSecondaryColor}"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center"
+                                            />
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </RadioButton.ControlTemplate>
+                            <RadioButton.Content>
+                                <Grid
+                                    ColumnDefinitions="Auto,*"
+                                    RowDefinitions="*,*"
+                                    ColumnSpacing="{DynamicResource SpacingSmall}"
+                                    BindingContext="{ Binding BindingContext, Source={RelativeSource AncestorType={x:Type RadioButton}}, x:DataType=RadioButton }"
+                                    >
+                                    
+                                    <!-- Image -->
+                                    <Image
+                                        Style="{DynamicResource UserImageStyle}"
+                                        Source="{Binding UserImage }"
+                                    />
+                                    <!-- User Name -->
+                                    <Label
+                                        Grid.Column="1"
+                                        Text="{Binding User }"
+                                        Style="{DynamicResource TitleStyle}"
+                                        FontSize="{DynamicResource BaseFontSize}"
+                                        VerticalTextAlignment="End"
+                                    />
+                                    <!-- User Info -->
+                                    <Label
+                                        Grid.Column="1"
+                                        Grid.Row="1"
+                                        Text="{Binding UserActivity }"
+                                        Style="{DynamicResource SubTitleStyle}"
+                                    />
+                                </Grid> 
+                            </RadioButton.Content>
+                        </RadioButton>
+                    </DataTemplate>
+                </Setter>
+            </Style>
+            
+            <!-- PLAYGROUND/TEST POPUP -->
+            <Style TargetType="local:TestPopup">
+                <Setter Property="CloseButtonIconText" Value="{x:Static local:MaterialSymbolsFont.Close}" />
+                <Setter Property="CloseButtonIconColor" Value="{DynamicResource TextColor}" />
+                <Setter Property="IconText" Value="{x:Static local:MaterialSymbolsFont.Check_circle}" />
+                <Setter Property="IconColor" Value="{DynamicResource IconBlue}" />
+                <Setter Property="Title" Value="Title Goes Here" />
+                <Setter Property="Text" Value="Add some text here" />
+                <Setter Property="ControlTemplate">
+                    <ControlTemplate>
+                        <Grid
+                            x:DataType="local:TestPopup"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Margin="{DynamicResource AirSpacing}"
+                            RowDefinitions="Auto,Auto"
+                            Padding="{DynamicResource AirSpacingSmallTop}"
+                            >
+                            <!-- Popup Background -->
+                            <BoxView
+                                BackgroundColor="{DynamicResource BackgroundSecondaryColor}"
+                                CornerRadius="{DynamicResource CornerRadiusXBig}"
+                                Margin="-30,-20,-30,-30"
+                                Grid.RowSpan="3"
+                                />
+                            <!-- Close Button -->
+                            <Label
+                                Style="{DynamicResource CloseButtonStyle}"
+                                Text="{Binding CloseButtonIconText, Source={RelativeSource TemplatedParent}}"
+                                TextColor="{Binding CloseButtonIconColor, Source={RelativeSource TemplatedParent}, TargetNullValue={StaticResource TextColor}}"
+                                >
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding CloseButtonCommand, Source={RelativeSource TemplatedParent}}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                            <!-- Content -->
+                            <ContentPresenter 
+                                Grid.Row="1" 
+                                />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

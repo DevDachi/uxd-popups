@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<uxd:PopupPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:uxd="clr-namespace:UXDivers.Popups.Maui;assembly=UXDivers.Popups.Maui"
+    xmlns:local="clr-namespace:UXDivers.Popups.Maui.DemoApp"
+    x:Class="UXDivers.Popups.Maui.DemoApp.TestPopup"
+    BackgroundOpacity="0.5"
+    BackgroundColor="Black"
+    CloseWhenBackgroundIsClicked="False"
+    BackgroundInputTransparent="False"
+    AppearingAnimation="{ uxd:FadeInPopupAnimation Duration=400 }"
+    DisappearingAnimation="{ uxd:FadeOutPopupAnimation Duration=400 }"
+    >
+    <Grid
+        x:DataType="local:TestPopup"
+        HorizontalOptions="Fill"
+        VerticalOptions="Center"
+        Margin="20"
+        Padding="0,0,0,20"
+        RowDefinitions="Auto,Auto">
+        <!-- Icon -->
+        <Label
+            Text="{Binding IconText, Source={RelativeSource AncestorType={x:Type local:TestPopup}}}"
+            TextColor="{Binding IconColor, Source={RelativeSource AncestorType={x:Type local:TestPopup}}}"
+            FontFamily="{DynamicResource IconsFontFamily}"
+            HorizontalOptions="Center"
+            FontSize="{OnIdiom Phone=53, Tablet=60, Desktop=60}"
+        />
+        <VerticalStackLayout
+            Grid.Row="1"
+            Margin="0,20,0,0"
+            Spacing="4"
+        >
+            <!-- Title -->
+            <Label
+                Text="{Binding Title, Source={RelativeSource AncestorType={x:Type local:TestPopup}}}"
+                Style="{DynamicResource TitleStyle}"
+                HorizontalTextAlignment="Center"
+            />
+            <!-- Text -->
+            <Label
+                Text="{Binding Text, Source={RelativeSource AncestorType={x:Type local:TestPopup}}}"
+                Style="{DynamicResource SubTitleStyle}"
+                FontSize="{DynamicResource BaseFontSize}"
+                HorizontalTextAlignment="Center"
+            />
+        </VerticalStackLayout>
+    </Grid>
+</uxd:PopupPage>

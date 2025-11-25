@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:UXDivers.Popups.Maui.DemoApp"
+    x:Class="UXDivers.Popups.Maui.DemoApp.MainPage"
+    BackgroundColor="{DynamicResource BackgroundColor}"
+    >
+    <ScrollView VerticalScrollBarVisibility="Never">
+        <!-- Main Container -->
+        <VerticalStackLayout
+            Margin="{DynamicResource AirSpacing}"
+            Spacing="{DynamicResource SpacingBig}"
+            VerticalOptions="Fill"
+            >
+            <!-- Title -->
+            <VerticalStackLayout>
+                <Label
+                    Text="Pop-up Library"
+                    Style="{DynamicResource MainTitleStyle}"
+                    />
+                <Label
+                    Text="Try all our Free .NET MAUI Pop-ups flavors."
+                    Style="{DynamicResource MainSubTitleStyle}"
+                    />
+            </VerticalStackLayout>
+            <!-- Cards Container -->
+            <FlexLayout
+                x:Name="flexCardContainer"
+                Margin="{OnIdiom Phone=-4,
+                                 Tablet=-8,
+                                 Desktop=-8}"
+                Wrap="Wrap"
+                >
+                <!-- Floater -->
+                <Border
+                    Style="{DynamicResource MainCardStyle}">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnFloaterTapped" />
+                    </Border.GestureRecognizers>
+                    <Grid Style="{DynamicResource MainCardContentGridStyle}">
+                        <Label
+                            Text="{x:Static local:MaterialSymbolsFont.Label}"
+                            Style="{DynamicResource CardIconStyle}"
+                            TextColor="{DynamicResource IconOrange}"
+                            />
+                        <Label
+                            Grid.Row="1"
+                            Text="Floater"
+                            Style="{DynamicResource CardTitleStyle}"
+                            />
+                        <Label
+                            Grid.Row="2"
+                            Text="Lightweight hint that hovers near its target."
+                            Style="{DynamicResource CardSubTitleStyle}"
+                            />
+                    </Grid>
+                </Border>
+                <!-- Toast -->
+                <Border
+                    Style="{DynamicResource MainCardStyle}"
+                    >
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnToastTapped" />
+                    </Border.GestureRecognizers>
+                    <Grid Style="{DynamicResource MainCardContentGridStyle}">
+                        <Label
+                            Text="{x:Static local:MaterialSymbolsFont.Acute}"
+                            Style="{DynamicResource CardIconStyle}"
+                            TextColor="{DynamicResource PrimaryColor}"
+                            />
+                        <Label
+                            Grid.Row="1"
+                            Text="Toast"
+                            Style="{DynamicResource CardTitleStyle}"
+                            />
+                        <Label
+                            Grid.Row="2"
+                            Text="Temporary message for status and updates."
+                            Style="{DynamicResource CardSubTitleStyle}"
+                            />
+                    </Grid>
+                </Border>
+                <!-- Options Sheet -->
+                <Border
+                    Style="{DynamicResource MainCardStyle}"
+                    >
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnOptionSheetTapped" />
+                    </Border.GestureRecognizers>
+                    <Grid Style="{DynamicResource MainCardContentGridStyle}">
+                        <Label
+                            Text="{x:Static local:MaterialSymbolsFont.Ballot}"
+                            Style="{DynamicResource CardIconStyle}"
+                            TextColor="{DynamicResource IconMagenta}"
+                            />
+                        <Label
+                            Grid.Row="1"
+                            Text="Options Sheet"
+                            Style="{DynamicResource CardTitleStyle}"
+                            />
+                        <Label
+                            Grid.Row="2"
+                            Text="Compact menu for secondary actions."
+                            Style="{DynamicResource CardSubTitleStyle}"
+                            />
+                    </Grid>
+                </Border>
+                <!-- Action Modal -->
+                <Border
+                    Style="{DynamicResource MainCardStyle}"
+                    >
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnActionModalTapped" />
+                    </Border.GestureRecognizers>
+                    <Grid Style="{DynamicResource MainCardContentGridStyle}">
+                        <Label
+                            Text="{x:Static local:MaterialSymbolsFont.Call_to_action}"
+                            Style="{DynamicResource CardIconStyle}"
+                            TextColor="{DynamicResource IconCyan}"
+                            />
+                        <Label
+                            Grid.Row="1"
+                            Text="Action Modal"
+                            Style="{DynamicResource CardTitleStyle}"
+                            />
+                        <Label
+                            Grid.Row="2"
+                            Text="Focused dialog requiring a decisive choice."
+                            Style="{DynamicResource CardSubTitleStyle}"
+                            />
+                    </Grid>
+                </Border>
+                <!-- Simple Text -->
+                <Border
+                    Style="{DynamicResource MainCardStyle}"
+                    >
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSimpleTextTapped" />
+                    </Border.GestureRecognizers>
+                    <Grid Style="{DynamicResource MainCardContentGridStyle}">
+                        <Label
+                            Text="{x:Static local:MaterialSymbolsFont.Brand_family}"
+                            Style="{DynamicResource CardIconStyle}"
+                            TextColor="{DynamicResource IconGreen}"
+                            />
+                        <Label
+                            Grid.Row="1"
+                            Text="Simple Text"
+                            Style="{DynamicResource CardTitleStyle}"
+                            />
+                        <Label
+                            Grid.Row="2"
+                            Text="Minimal message for short, clear notes."
+                            Style="{DynamicResource CardSubTitleStyle}"
+                            />
+                    </Grid>
+                </Border>
+                <!-- Simple Action -->
+                <Border
+                    Style="{DynamicResource MainCardStyle}"
+                    >
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSimpleActionTapped" />
+                    </Border.GestureRecognizers>
+                    <Grid Style="{DynamicResource MainCardContentGridStyle}">
+                        <Label
+                            Text="{x:Static local:MaterialSymbolsFont.Buttons_alt}"
+                            Style="{DynamicResource CardIconStyle}"
+                            TextColor="{DynamicResource IconPurple}"
+                            />
+                        <Label
+                            Grid.Row="1"
+                            Text="Simple Action"
+                            Style="{DynamicResource CardTitleStyle}"
+                            />
+                        <Label
+                            Grid.Row="2"
+                            Text="Streamlined nudge to proceed or dismiss."
+                            Style="{DynamicResource CardSubTitleStyle}"
+                            />
+                    </Grid>
+                </Border>
+                <!-- List Action -->
+                <Border
+                    Style="{DynamicResource MainCardStyle}"
+                    >
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnListActionTapped" />
+                    </Border.GestureRecognizers>
+                    <Grid Style="{DynamicResource MainCardContentGridStyle}">
+                        <Label
+                            Text="{x:Static local:MaterialSymbolsFont.Check_circle}"
+                            Style="{DynamicResource CardIconStyle}"
+                            TextColor="{DynamicResource IconLime}"
+                            />
+                        <Label
+                            Grid.Row="1"
+                            Text="List Action"
+                            Style="{DynamicResource CardTitleStyle}"
+                            />
+                        <Label
+                            Grid.Row="2"
+                            Text="Select an item, then apply an action."
+                            Style="{DynamicResource CardSubTitleStyle}"
+                            />
+                    </Grid>
+                </Border>
+                <!-- Icon Text -->
+                <Border
+                    Style="{DynamicResource MainCardStyle}"
+                    >
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnIconTextTapped" />
+                    </Border.GestureRecognizers>
+                    <Grid Style="{DynamicResource MainCardContentGridStyle}">
+                        <Label
+                            Text="{x:Static local:MaterialSymbolsFont.Add_reaction}"
+                            Style="{DynamicResource CardIconStyle}"
+                            TextColor="{DynamicResource IconRed}"
+                            />
+                        <Label
+                            Grid.Row="1"
+                            Text="Icon Text"
+                            Style="{DynamicResource CardTitleStyle}"
+                            />
+                        <Label
+                            Grid.Row="2"
+                            Text="Visual icon paired with concise label."
+                            Style="{DynamicResource CardSubTitleStyle}"
+                            />
+                    </Grid>
+                </Border>
+                <!-- Form -->
+                <Border
+                    Style="{DynamicResource MainCardStyle}"
+                    >
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnFormTapped" />
+                    </Border.GestureRecognizers>
+                    <Grid Style="{DynamicResource MainCardContentGridStyle}">
+                        <Label
+                            Text="{x:Static local:MaterialSymbolsFont.Draw}"
+                            Style="{DynamicResource CardIconStyle}"
+                            TextColor="{DynamicResource IconDarkBlue}"
+                            />
+                        <Label
+                            Grid.Row="1"
+                            Text="Form"
+                            Style="{DynamicResource CardTitleStyle}"
+                            />
+                        <Label
+                            Grid.Row="2"
+                            Text="Input fields to set up your first steps."
+                            Style="{DynamicResource CardSubTitleStyle}"
+                            />
+                    </Grid>
+                </Border>
+            </FlexLayout>
+
+            <Border
+                StrokeShape="RoundRectangle 16"
+                BackgroundColor="{ DynamicResource PrimaryVariantColor }"
+                HorizontalOptions="{ OnIdiom Phone=Fill, Default=Center }"
+                Margin="0,16,0,24"
+                Padding="20,10"
+                >
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnPlaygroundTapped" />
+                </Border.GestureRecognizers>
+                <!-- Playground -->
+                <HorizontalStackLayout
+                    HorizontalOptions="Center"
+                    Spacing="{DynamicResource SpacingMedium}"
+                    >
+                    <Label
+                        Text="{x:Static local:MaterialSymbolsFont.Psychology}"
+                        Style="{DynamicResource IconStyle}"
+                        TextColor="{DynamicResource IconBlue}"
+                        VerticalOptions="Center"
+                        />
+                    <Label
+                        Text="Control Playground"
+                        FontSize="{DynamicResource LargeFontSize}"
+                        TextColor="{DynamicResource PrimaryColor}"
+                        FontFamily="{DynamicResource AppSemiBoldFamily}"
+                        VerticalOptions="Center"
+                        Style="{ DynamicResource LabelDefaultStyle }"
+                        />
+                </HorizontalStackLayout>
+            </Border>
+
+            <!-- More About -->
+            <VerticalStackLayout>
+                <Label
+                    Text="More about us"
+                    Style="{DynamicResource MainTitleStyle}"
+                    />
+                <Label
+                    Text="Find out what we do best."
+                    Style="{DynamicResource MainSubTitleStyle}"
+                    />
+            </VerticalStackLayout>
+
+            <!-- Banners -->
+            <FlexLayout
+                x:Name="flexImageContainer"
+                Margin="{OnIdiom Phone=-8,
+                                 Tablet=-8,
+                                 Desktop=-8
+                                 }"
+                Wrap="Wrap"
+                VerticalOptions="Start"
+                >
+                <!-- UXDivers -->
+                <Border
+                    Style="{ DynamicResource ImageBannerStyle}"
+                    BackgroundColor="#000000"
+                    >
+                    <Grid 
+                        ColumnDefinitions="*,Auto">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnUXDiversTapped" />
+                        </Grid.GestureRecognizers>
+                        <Grid 
+                            RowDefinitions="*,Auto,Auto"
+                            Margin="24,24,0,24"
+                            ZIndex="2"
+                            >
+                            <Image 
+                                Source="uxd"
+                                WidthRequest="{OnIdiom Phone=24, Tablet=54, Desktop=54}"
+                                HeightRequest="{OnIdiom Phone=24, Tablet=54, Desktop=54}"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Start"
+                                />
+                            <Label
+                                Grid.Row="1"
+                                Text="UXDivers"
+                                FontSize="{ DynamicResource SmallTitleFontSize }"
+                                TextColor="{ DynamicResource TextColor }"
+                                FontAttributes="Bold"
+                                HorizontalOptions="Start"
+                                Style="{ DynamicResource LabelDefaultStyle }"
+                                />
+                            <Label
+                                Grid.Row="2"
+                                Text="Product Design Studio"
+                                FontSize="{ DynamicResource TinyFontSize }"
+                                TextColor="{ DynamicResource TextSecondaryColor }"
+                                HorizontalOptions="Start"
+                                Style="{ DynamicResource LabelDefaultStyle }"
+                            />
+                        </Grid>
+                        <Image 
+                            Grid.Column="1"
+                            Source="uxdiversimage.png"
+                            HorizontalOptions="End"
+                            Aspect="AspectFit"
+                            Margin="-5"
+                            ZIndex="1"
+                            WidthRequest="{OnIdiom Phone=127, Tablet=200, Desktop=200}"
+                            />
+                    </Grid>
+                </Border>
+                <!-- Grial UI Kit -->
+                 <Border
+                    Style="{ DynamicResource ImageBannerStyle}"
+                    StrokeThickness="0"
+                    BackgroundColor="#5E39CE"
+                    >
+                    <Grid 
+                        ColumnDefinitions="*,Auto">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnGrialTapped" />
+                        </Grid.GestureRecognizers>
+                        <Grid 
+                            RowDefinitions="*,Auto,Auto"
+                            Margin="24,24,0,24"
+                            ZIndex="1"
+                            >
+                            <Image 
+                                Source="logogrialwhite"
+                                WidthRequest="{OnIdiom Phone=24, Tablet=54, Desktop=54}"
+                                HeightRequest="{OnIdiom Phone=24, Tablet=54, Desktop=54}"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Start"
+                                />
+                            <Label
+                                Grid.Row="1"
+                                Text="Grial UI Kit"
+                                FontSize="{ DynamicResource SmallTitleFontSize }"
+                                TextColor="{ DynamicResource TextColor }"
+                                FontAttributes="Bold"
+                                HorizontalOptions="Start"
+                                Style="{ DynamicResource LabelDefaultStyle }"
+                                />
+                            <Label
+                                Grid.Row="2"
+                                Text="For .NET MAUI"
+                                FontSize="{ DynamicResource TinyFontSize }"
+                                TextColor="{ DynamicResource TextColor }"
+                                HorizontalOptions="Start"
+                                Style="{ DynamicResource LabelDefaultStyle }"
+                                />
+                        </Grid>
+                        <Image 
+                            Grid.Column="1"
+                            Source="grialuikitimage.png"
+                            HorizontalOptions="End"
+                            WidthRequest="{OnIdiom Phone=127, Tablet=200, Desktop=200}"
+                            Aspect="AspectFit"
+                            Margin="-5"
+                            />
+                    </Grid>
+                </Border>
+                <!-- Grial Studio -->
+                <Border
+                    Style="{ DynamicResource ImageBannerStyle}"
+                    StrokeThickness="0"
+                    >
+                    <Border.Background>
+                        <LinearGradientBrush EndPoint="0,1">
+                            <GradientStop Color="#050509"
+                                          Offset="0.1" />
+                            <GradientStop Color="#201B3D"
+                                          Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <Grid 
+                        ColumnDefinitions="*,Auto">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnGrialStudioTapped" />
+                        </Grid.GestureRecognizers>
+                        <Grid 
+                            RowDefinitions="*,Auto,Auto"
+                            Margin="24,24,0,24"
+                            HorizontalOptions="Start"
+                            ZIndex="2"
+                            >
+                            <Image 
+                                Source="logogrial"
+                                WidthRequest="{OnIdiom Phone=24, Tablet=54, Desktop=54}"
+                                HeightRequest="{OnIdiom Phone=24, Tablet=54, Desktop=54}"
+                                HorizontalOptions="Start"
+                                VerticalOptions="Start"
+                                />
+                            <Label
+                                Grid.Row="1"
+                                Text="Grial Studio"
+                                FontSize="{ DynamicResource SmallTitleFontSize }"
+                                TextColor="{ DynamicResource TextColor }"
+                                FontAttributes="Bold"
+                                HorizontalOptions="Start"
+                                Style="{ DynamicResource LabelDefaultStyle }"
+                                />
+                            <HorizontalStackLayout
+                                Grid.Row="2"
+                                Spacing="4"
+                                >
+                                <Image 
+                                    Source="visualstudio"
+                                    VerticalOptions="Center"
+                                    HeightRequest="18"
+                                />
+                                <Label
+                                    Text="Visual Studio"
+                                    FontSize="{ DynamicResource TinyFontSize }"
+                                    TextColor="{ DynamicResource TextColor }"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center"
+                                    Style="{ DynamicResource LabelDefaultStyle }"
+                                />
+                            </HorizontalStackLayout>
+                        </Grid>
+                        <Image 
+                            Grid.Column="1"
+                            Source="studio.png"
+                            HorizontalOptions="End"
+                            WidthRequest="{OnIdiom Phone=127, Tablet=200, Desktop=200}"
+                            Aspect="AspectFit"
+                            VerticalOptions="End"
+                            Margin="-5"
+                            ZIndex="1"
+                            />
+                    </Grid>
+                </Border>
+          </FlexLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

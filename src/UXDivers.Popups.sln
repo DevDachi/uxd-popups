@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11201.2
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UXDivers.Popups.Maui", "UXDivers.Popups.Maui\UXDivers.Popups.Maui.csproj", "{47A96A8B-579D-4E67-B499-E5ACFA9A619F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UXDivers.Popups.Maui.DemoApp", "UXDivers.Popups.Maui.DemoApp\UXDivers.Popups.Maui.DemoApp.csproj", "{88E6D99E-F38A-4869-B6B0-228DDEAC727F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UXDivers.Popups", "UXDivers.Popups\UXDivers.Popups.csproj", "{34004590-6B6D-4388-874A-1C384D04AD49}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{F6F462E1-D058-33EE-9A35-BBD49B846676}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{9652E898-14FE-1DA7-3C0A-0F91AE7E3B8D}"
+	ProjectSection(SolutionItems) = preProject
+		build\Maui.props = build\Maui.props
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47A96A8B-579D-4E67-B499-E5ACFA9A619F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47A96A8B-579D-4E67-B499-E5ACFA9A619F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47A96A8B-579D-4E67-B499-E5ACFA9A619F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47A96A8B-579D-4E67-B499-E5ACFA9A619F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88E6D99E-F38A-4869-B6B0-228DDEAC727F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88E6D99E-F38A-4869-B6B0-228DDEAC727F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88E6D99E-F38A-4869-B6B0-228DDEAC727F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{88E6D99E-F38A-4869-B6B0-228DDEAC727F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88E6D99E-F38A-4869-B6B0-228DDEAC727F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34004590-6B6D-4388-874A-1C384D04AD49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34004590-6B6D-4388-874A-1C384D04AD49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34004590-6B6D-4388-874A-1C384D04AD49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34004590-6B6D-4388-874A-1C384D04AD49}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9652E898-14FE-1DA7-3C0A-0F91AE7E3B8D} = {F6F462E1-D058-33EE-9A35-BBD49B846676}
+	EndGlobalSection
+EndGlobal

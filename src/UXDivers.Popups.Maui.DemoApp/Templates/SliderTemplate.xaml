@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:UXDivers.Popups.Maui.DemoApp"
+    x:Class="UXDivers.Popups.Maui.DemoApp.SliderTemplate"
+    x:Name="root"
+    x:DataType="local:SliderTemplate"
+    >
+    <!-- Card Container -->
+    <Border 
+        Style="{DynamicResource PlaygroundCardStyle}">
+        <Grid
+            RowDefinitions="*,Auto"
+            VerticalOptions="Center"
+            >
+            <!-- Property Name -->
+            <Label
+                Text="{Binding PropertyName, Source={x:Reference root}}"
+                Style="{DynamicResource PlaygroundCardTextStyle}"
+                VerticalTextAlignment="Center"
+                />
+            
+            <!-- Current Value -->
+            <Label
+                Text="{Binding Value, Source={x:Reference root}, StringFormat='{0:F0}%'}"
+                TextColor="{DynamicResource PrimaryColor}"
+                VerticalTextAlignment="Center"
+                HorizontalOptions="End"
+                FontFamily="{DynamicResource AppFontFamily}"
+                />
+
+            <!-- Slider -->    
+            <Slider
+                Grid.Row="1"
+                Margin="0,12"
+                Value="{Binding Value, Source={x:Reference root}, Mode=TwoWay}"
+                Maximum="{Binding MaxValue, Source={x:Reference root}, Mode=TwoWay}"
+                Minimum="{Binding MinValue, Source={x:Reference root}, Mode=TwoWay}"
+                MinimumTrackColor="{DynamicResource PrimaryColor}"
+                ThumbColor="{DynamicResource PrimaryColor}"
+                />
+        </Grid>
+    </Border>
+</ContentView>

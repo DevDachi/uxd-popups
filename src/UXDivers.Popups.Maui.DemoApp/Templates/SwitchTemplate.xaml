@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:UXDivers.Popups.Maui.DemoApp"
+    x:Class="UXDivers.Popups.Maui.DemoApp.SwitchTemplate"
+    x:Name="root"
+    x:DataType="local:SwitchTemplate"
+    >
+    <!-- Card Container -->
+    <Border 
+        Style="{DynamicResource PlaygroundCardStyle}"
+        >
+        <Grid
+            ColumnDefinitions="*,Auto"
+            VerticalOptions="Center"
+            >
+            <!-- Property Name -->
+            <Label
+                Text="{Binding PropertyName, Source={x:Reference root}}"
+                Style="{DynamicResource PlaygroundCardTextStyle}"
+                VerticalTextAlignment="Center"
+                />
+            <Switch
+                Grid.Column="1"
+                VerticalOptions="Center"
+                OnColor="{ DynamicResource PrimaryColor }"
+                IsToggled="{Binding IsToggled, Source={x:Reference root}, Mode=TwoWay}"
+                />
+        </Grid>
+    </Border>
+</ContentView>

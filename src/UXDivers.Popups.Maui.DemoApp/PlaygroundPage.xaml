@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<uxd:PopupPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:uxd="clr-namespace:UXDivers.Popups.Maui;assembly=UXDivers.Popups.Maui"
+    xmlns:local="clr-namespace:UXDivers.Popups.Maui.DemoApp"
+    x:Class="UXDivers.Popups.Maui.DemoApp.PlaygroundPage"
+    BackgroundColor="{DynamicResource PopupBackdropColor}"
+    CloseWhenBackgroundIsClicked="True"
+    BackgroundInputTransparent="False"
+    AppearingAnimation="{OnIdiom 
+        Phone={uxd:MoveInPopupAnimation MoveDirection=Bottom ,Duration=500,Easing=CubicOut }, 
+        Tablet={uxd:MoveInPopupAnimation MoveDirection=Right ,Duration=500,Easing=CubicOut } , 
+        Desktop={uxd:MoveInPopupAnimation MoveDirection=Right ,Duration=500,Easing=CubicOut }}"
+    DisappearingAnimation="{OnIdiom 
+        Phone={uxd:MoveOutPopupAnimation MoveDirection=Bottom ,Duration=500,Easing=CubicIn }, 
+        Tablet={uxd:MoveOutPopupAnimation MoveDirection=Right ,Duration=500,Easing=CubicIn } , 
+        Desktop={uxd:MoveOutPopupAnimation MoveDirection=Right ,Duration=500,Easing=CubicIn }}"
+    SafeAreaAsPadding="Top"
+    >
+    <!-- Main Container -->
+    <Grid
+        RowDefinitions="Auto,Auto,*"
+        Padding="{ OnIdiom Phone='30,0' , Tablet='30,20,30,0' , Desktop='30,30,30,0'  }"
+        HorizontalOptions="End"
+        BackgroundColor="{DynamicResource BackgroundColor}"
+        WidthRequest="{OnIdiom Default=-1, Tablet=400 , Desktop=500}"
+        >
+        <!-- Decoration Background -->
+        <BoxView
+            Grid.RowSpan="2"
+            BackgroundColor="{DynamicResource BackgroundSecondaryColor}"
+            Margin="-30,-60,-30,0"
+            CornerRadius="{DynamicResource BottomCornerRadiusLg}"
+            />
+        <!-- Test Button -->
+        <Button 
+            Grid.Row="1"
+            Style="{ DynamicResource PrimaryActionButtonStyle}"
+            Text="Test Popup"
+            ImageSource="eyes.png"
+            ContentLayout="Left, 12"
+            HorizontalOptions="Center"
+            Margin="{DynamicResource VerticalAirSpacing }"
+            Clicked="OnTestClicked"
+            >
+        </Button>
+        <!-- Page Title -->
+        <Label
+            Text="Control Playground"
+            Style="{DynamicResource TitleStyle}"
+            HorizontalTextAlignment="Center"
+            VerticalTextAlignment="Center"
+            />
+        <!-- Close Button -->
+        <Label
+            Style="{DynamicResource CloseButtonStyle}"
+            Text="{x:Static local:MaterialSymbolsFont.Close}"
+            TextColor="{ DynamicResource TextColor}"
+            VerticalOptions="Center"
+            x:DataType="local:PlaygroundPage"
+            
+        >
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{ Binding CloseButtonCommand, Source={RelativeSource AncestorType={x:Type local:PlaygroundPage}}}" />
+            </Label.GestureRecognizers>
+        </Label> 
+        <ScrollView 
+            Grid.Row="2"
+            VerticalScrollBarVisibility="Never"
+            >
+            <VerticalStackLayout
+                Spacing="{DynamicResource SpacingSmall}"
+                Margin="{DynamicResource AirSpacingOnlyTop}"
+                >
+                <Label
+                    Text="General"
+                    Style="{DynamicResource TitleStyle}"
+                    FontSize="{DynamicResource LargeFontSize}"
+                    />
+                
+                <!-- Property Card -->
+                <Border 
+                    Style="{DynamicResource PlaygroundCardStyle}"
+                    >
+                    <Grid
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill"
+                        >
+                        <!-- Property Name -->
+                        <Label
+                            InputTransparent="True"
+                            Text="In Animation"
+                            VerticalTextAlignment="Center"
+                            HorizontalOptions="Start"
+                            HorizontalTextAlignment="Start"
+                            Style="{DynamicResource PlaygroundCardTextStyle}"
+                            />
+
+                        <!-- Picker -->
+                        <Picker
+                            x:Name="inAnimationPicker"
+                            BackgroundColor="Transparent"
+                            TextColor="{DynamicResource PrimaryColor}"
+                            FontFamily="{DynamicResource AppSemiBoldFamily}"
+                            HorizontalTextAlignment="End"
+                            Style="{DynamicResource SingleLinePickerStyle}"
+                            />
+                    </Grid>
+                </Border>
+                
+                <!-- Property Card -->
+                <Border 
+                    Style="{DynamicResource PlaygroundCardStyle}"
+                    >
+                    <Grid
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill"
+                        >
+                        <!-- Property Name -->
+                        <Label
+                            Text="Out Animation"
+                            InputTransparent="True"
+                            Style="{DynamicResource PlaygroundCardTextStyle}"
+                            VerticalTextAlignment="Center"
+                            HorizontalOptions="Start"
+                            />
+                        <!-- Picker -->
+                        <Picker
+                            Grid.Column="1"
+                            x:Name="outAnimationPicker"
+                            Style="{DynamicResource SingleLinePickerStyle}"
+                            BackgroundColor="Transparent"
+                            TextColor="{DynamicResource PrimaryColor}"
+                            FontFamily="{DynamicResource AppSemiBoldFamily}"
+                            HorizontalTextAlignment="End"
+                            VerticalOptions="Center"
+                            />
+                    </Grid>
+                </Border>
+                
+                <!-- Property Card -->
+                <local:SwitchTemplate
+                    x:Name="closeOnBackgroundClicked"
+                    PropertyName="Close when tap outside"
+                />
+
+                <!-- Property Card -->
+                <local:SwitchTemplate
+                    x:Name="backgroundInputTransparent"
+                    PropertyName="Background input transparent"
+                />
+                
+                <!-- Property Card -->
+                <local:SliderTemplate
+                    x:Name="overlayOpacity"
+                    PropertyName="Overlay Opacity"
+                    MaxValue="100"
+                    MinValue="0"
+                />
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</uxd:PopupPage>
