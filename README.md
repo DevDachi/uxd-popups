@@ -216,32 +216,32 @@ public partial class MyCustomPopup : PopupPage
 
 For detailed documentation on advanced features, explore these resources:
 
-### Wiki Documentation
+### Documentation
 
 | Topic | Description |
 |-------|-------------|
-| **[Popup Class](wiki/Popup-Class.md)** | Core popup classes, lifecycle, and customization |
-| **[Custom Popups](wiki/Custom-Popups.md)** | Create your own popups with custom styling |
-| **[Popup Controls](wiki/Popup-Controls.md)** | All 9 pre-built popup controls explained |
-| **[Navigation](wiki/Navigation.md)** | How to show, close, and pass data to popups |
-| **[Dependency Injection](wiki/Dependency-Injection.md)** | Register popups and ViewModels with DI |
-| **[MVVM](wiki/MVVM.md)** | ViewModel integration and patterns |
-| **[Animations](wiki/Animations.md)** | Animation system and customization |
-| **[API Reference](wiki/API-Reference.md)** | Complete reference for all public types and methods |
+| **[Popup Class](docs/Popup-Class.md)** | Core popup classes, lifecycle, and customization |
+| **[Custom Popups](docs/Custom-Popups.md)** | Create your own popups with custom styling |
+| **[Popup Controls](docs/Popup-Controls.md)** | All 9 pre-built popup controls explained |
+| **[Navigation](docs/Navigation.md)** | How to show, close, and pass data to popups |
+| **[Dependency Injection](docs/Dependency-Injection.md)** | Register popups and ViewModels with DI |
+| **[MVVM](docs/MVVM.md)** | ViewModel integration and patterns |
+| **[Animations](docs/Animations.md)** | Animation system and customization |
+| **[API Reference](docs/API-Reference.md)** | Complete reference for all public types and methods |
 
 ### Popup Controls Reference
 
-| Control | Wiki Link |
+| Control | Docs Link |
 |---------|-----------|
-| Toast | **[Toast](wiki/Popup-Controls.md#toast)** |
-| FloaterPopup | **[FloaterPopup](wiki/Popup-Controls.md#floaterpopup)** |
-| SimpleTextPopup | **[SimpleTextPopup](wiki/Popup-Controls.md#simpletextpopup)** |
-| SimpleActionPopup | **[SimpleActionPopup](wiki/Popup-Controls.md#simpleactionpopup)** |
-| IconTextPopup | **[IconTextPopup](wiki/Popup-Controls.md#icontextpopup)** |
-| ActionModalPopup | **[ActionModalPopup](wiki/Popup-Controls.md#actionmodalpopup)** |
-| ListActionPopup | **[ListActionPopup](wiki/Popup-Controls.md#listactionpopup)** |
-| OptionSheetPopup | **[OptionSheetPopup](wiki/Popup-Controls.md#optionsheetpopup)** |
-| FormPopup | **[FormPopup](wiki/Popup-Controls.md#formpopup)** |
+| Toast | **[Toast](docs/Popup-Controls.md#toast)** |
+| FloaterPopup | **[FloaterPopup](docs/Popup-Controls.md#floaterpopup)** |
+| SimpleTextPopup | **[SimpleTextPopup](docs/Popup-Controls.md#simpletextpopup)** |
+| SimpleActionPopup | **[SimpleActionPopup](docs/Popup-Controls.md#simpleactionpopup)** |
+| IconTextPopup | **[IconTextPopup](docs/Popup-Controls.md#icontextpopup)** |
+| ActionModalPopup | **[ActionModalPopup](docs/Popup-Controls.md#actionmodalpopup)** |
+| ListActionPopup | **[ListActionPopup](docs/Popup-Controls.md#listactionpopup)** |
+| OptionSheetPopup | **[OptionSheetPopup](docs/Popup-Controls.md#optionsheetpopup)** |
+| FormPopup | **[FormPopup](docs/Popup-Controls.md#formpopup)** |
 
 ### Additional Resources
 - **[DemoApp](src/UXDivers.Popups.Maui.DemoApp)** - Working examples of all popup types, custom styles, and animations
