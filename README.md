@@ -1,21 +1,11 @@
-<p align="center">
-  <img src="img/banner.png" alt="UXDivers Popups" width="100%"/>
-</p>
 
-<h1 align="center">UXDivers Popups for .NET MAUI</h1>
+![UXDivers Popups](https://raw.githubusercontent.com/UXDivers/uxd-popups/refs/heads/main/img/banner.png)
 
-<p align="center">
-  <strong>Beautiful, animated popups for .NET MAUI applications</strong>
-</p>
+# UXDivers Popups for .NET MAUI
 
-<p align="center">
-  <a href="#-setup">Setup</a> •
-  <a href="#-showing-a-popup">Usage</a> •
-  <a href="#-custom-popup">Custom Popups</a> •
-  <a href="#-learn-the-advanced">Documentation</a>
-</p>
 
----
+[![NuGet](https://img.shields.io/nuget/v/UXDivers.Popups.Maui?color=3479FF)](https://www.nuget.org/packages/UXDivers.Popups.Maui) [![Downloads](https://img.shields.io/nuget/dt/UXDivers.Popups.Maui?color=3479FF)](https://www.nuget.org/packages/UXDivers.Popups.Maui) [![License](https://img.shields.io/github/license/UXDivers/uxd-popups?color=3479FF)](LICENSE)
+
 
 ## Introduction
 
@@ -254,6 +244,4 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 
 ---
 
-<p align="center">
-  Made with ❤️ by <a href="https://uxdivers.com">UXDivers</a>
-</p>
+Made with ❤️ by <a href="https://uxdivers.com">UXDivers</a>
