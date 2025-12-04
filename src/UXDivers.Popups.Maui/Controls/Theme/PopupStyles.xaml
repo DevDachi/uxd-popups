@@ -18,9 +18,6 @@
         x:Key="IsEmptyStringConverter"
         Inverted="True" />
 
-    <x:String x:Key="CheckCircleDefaultIconPath">M12,2 A10,10 0 1,1 12,22 A10,10 0 1,1 12,2 M8,12.5 L11.5,16 L16.5,9.5</x:String>
-    <x:String x:Key="CloseDefaultIconPath">M6,6 L18,18 M18,6 L6,18</x:String>
-
     <!-- ############################################ -->
 
     <!-- ############   BASIC STYLES   ############## -->
@@ -120,7 +117,7 @@
     <Style x:Key="ListIconStyle" TargetType="Label" BasedOn="{ StaticResource IconStyle }">
         <Setter Property="VerticalTextAlignment" Value="Center" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
-        <Setter Property="TextColor" Value="{DynamicResource IconBlue}" />
+        <Setter Property="TextColor" Value="{DynamicResource PrimaryColor}" />
     </Style>
     
     <!--  Card Style  -->
@@ -273,10 +270,10 @@
                         <shapes:Path
                             WidthRequest="24" 
                             HeightRequest="24"
-                            Data="{ StaticResource CloseDefaultIconPath }"
+                            Data="M6,6 L18,18 M18,6 L6,18"
                             Fill="Transparent"
                             Stroke="{Binding CloseButtonIconColor, Source={RelativeSource TemplatedParent}, TargetNullValue={StaticResource TextColor}}"
-                            StrokeThickness="2"
+                            StrokeThickness="1"
                             StrokeLineJoin="Round"
                             StrokeLineCap="Round"/>
                     </Grid>
@@ -300,8 +297,8 @@
 
     <!-- FLOATER -->
     <Style x:Key="DefaultFloaterPopupStyle" TargetType="local:FloaterPopup" BasedOn="{ StaticResource PopupBaseStyle }">
-        <Setter Property="IconText" Value="{ DynamicResource UXDPopupsCircleCheckIconButton }" />
-        <Setter Property="IconColor" Value="{DynamicResource IconBlue}" />
+        <Setter Property="IconText" Value="{ DynamicResource UXDPopupsCheckCircleIconButton }" />
+        <Setter Property="IconColor" Value="{DynamicResource PrimaryColor}" />
         <Setter Property="Title" Value="Sample Title" />
         <Setter Property="Text" Value="Text goes here" />
         <Setter Property="BackgroundColor" Value="Transparent" />
@@ -344,10 +341,10 @@
                         <shapes:Path
                             WidthRequest="24" 
                             HeightRequest="24"
-                            Data="{ StaticResource CheckCircleDefaultIconPath }"
+                            Data="M12,2 A10,10 0 1,1 12,22 A10,10 0 1,1 12,2 M8,12.5 L11.5,16 L16.5,9.5"
                             Fill="Transparent"
                             Stroke="{Binding IconColor, Source={RelativeSource TemplatedParent}}"
-                            StrokeThickness="2"
+                            StrokeThickness="1"
                             StrokeLineJoin="Round"
                             StrokeLineCap="Round"/>
                     </Grid>
@@ -505,8 +502,8 @@
     <!-- ICON TEXT -->
     <Style x:Key="DefaultIconTextPopupStyle" TargetType="local:IconTextPopup" BasedOn="{ StaticResource PopupBaseStyle }">
         <Setter Property="CloseWhenBackgroundIsClicked" Value="False" />
-        <Setter Property="IconText" Value="{ DynamicResource UXDPopupsCircleCheckIconButton }" />
-        <Setter Property="IconColor" Value="{DynamicResource IconBlue}" />
+        <Setter Property="IconText" Value="{ DynamicResource UXDPopupsCheckCircleIconButton }" />
+        <Setter Property="IconColor" Value="{DynamicResource PrimaryColor}" />
         <Setter Property="Title" Value="Title Goes Here" />
         <Setter Property="Text" Value="Add some text here" />
         <Setter Property="ActionButtonText" Value="Button Text" />
@@ -637,10 +634,10 @@
                         <shapes:Path
                             WidthRequest="24" 
                             HeightRequest="24"
-                            Data="{ StaticResource CloseDefaultIconPath }"
+                            Data="M6,6 L18,18 M18,6 L6,18"
                             Fill="Transparent"
                             Stroke="{Binding CloseButtonIconColor, Source={RelativeSource TemplatedParent}, TargetNullValue={StaticResource TextColor}}"
-                            StrokeThickness="2"
+                            StrokeThickness="1"
                             StrokeLineJoin="Round"
                             StrokeLineCap="Round"/>
                     </Grid>
@@ -694,7 +691,7 @@
                                 <!-- Icon -->
                                 <Label
                                     Text="{Binding Icon}"
-                                    TextColor="{Binding IconColor, TargetNullValue={StaticResource IconBlue}}"
+                                    TextColor="{Binding IconColor, TargetNullValue={StaticResource PrimaryColor}}"
                                     Style="{DynamicResource ListIconStyle}"
                                     />
                                 <!-- Text -->
@@ -757,10 +754,10 @@
                         <shapes:Path
                             WidthRequest="24" 
                             HeightRequest="24"
-                            Data="{ StaticResource CloseDefaultIconPath }"
+                            Data="M6,6 L18,18 M18,6 L6,18"
                             Fill="Transparent"
                             Stroke="{Binding CloseButtonIconColor, Source={RelativeSource TemplatedParent}, TargetNullValue={StaticResource TextColor}}"
-                            StrokeThickness="2"
+                            StrokeThickness="1"
                             StrokeLineJoin="Round"
                             StrokeLineCap="Round"/>
                     </Grid>                    
@@ -930,10 +927,10 @@
                         <shapes:Path
                             WidthRequest="24" 
                             HeightRequest="24"
-                            Data="{ StaticResource CloseDefaultIconPath }"
+                            Data="M6,6 L18,18 M18,6 L6,18"
                             Fill="Transparent"
                             Stroke="{Binding CloseButtonIconColor, Source={RelativeSource TemplatedParent}, TargetNullValue={StaticResource TextColor}}"
-                            StrokeThickness="2"
+                            StrokeThickness="1"
                             StrokeLineJoin="Round"
                             StrokeLineCap="Round"/>
                     </Grid>
@@ -963,8 +960,8 @@
     <!-- TOAST -->
     <Style x:Key="DefaultToastStyle" TargetType="local:Toast" BasedOn="{ StaticResource PopupBaseStyle }">
         <Setter Property="Title" Value="Toast Title" />
-        <Setter Property="IconText" Value="{ DynamicResource UXDPopupsCircleCheckIconButton }" />
-        <Setter Property="IconColor" Value="{DynamicResource IconBlue}" />
+        <Setter Property="IconText" Value="{ DynamicResource UXDPopupsCheckCircleIconButton }" />
+        <Setter Property="IconColor" Value="{DynamicResource PrimaryColor}" />
         <Setter Property="BackgroundColor" Value="Transparent" />
         <Setter Property="AppearingAnimation" Value="{uxd:FadeInPopupAnimation Duration=400 }" /> 
         <Setter Property="DisappearingAnimation" Value="{ uxd:FadeOutPopupAnimation Duration=300}" />
@@ -1009,10 +1006,10 @@
                         <shapes:Path
                             WidthRequest="24" 
                             HeightRequest="24"
-                            Data="{ StaticResource CheckCircleDefaultIconPath }"
+                            Data="M12,2 A10,10 0 1,1 12,22 A10,10 0 1,1 12,2 M8,12.5 L11.5,16 L16.5,9.5"
                             Fill="Transparent"
                             Stroke="{Binding IconColor, Source={RelativeSource TemplatedParent}}"
-                            StrokeThickness="2"
+                            StrokeThickness="1"
                             StrokeLineJoin="Round"
                             StrokeLineCap="Round"/>
                     </Grid>
