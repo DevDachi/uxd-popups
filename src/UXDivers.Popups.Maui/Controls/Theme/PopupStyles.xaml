@@ -239,10 +239,10 @@
                     >
                     <!-- Popup Background -->
                     <Border
-                        Background="{TemplateBinding PopupBackground}"
-                        Stroke="{TemplateBinding PopupBorderBrush}"
+                        Background="{Binding PopupBackground, Source={RelativeSource TemplatedParent}}"
+                        Stroke="{Binding PopupBorderBrush, Source={RelativeSource TemplatedParent}}"
                         StrokeShape="{Binding PopupCornerRadius, Source={RelativeSource TemplatedParent}, Converter={StaticResource PopupCornerRadiusToStrokeShapeConverter}}"
-                        StrokeThickness="{TemplateBinding PopupBorderThickness}"
+                        StrokeThickness="{Binding PopupBorderThickness, Source={RelativeSource TemplatedParent}}"
                         Grid.RowSpan="4"
                         Margin="-24"
                         HorizontalOptions="Fill"
@@ -325,10 +325,10 @@
                     >
                     <!-- Popup Background -->
                     <Border
-                        Background="{TemplateBinding PopupBackground}"
-                        Stroke="{TemplateBinding PopupBorderBrush}"
+                        Background="{Binding PopupBackground, Source={RelativeSource TemplatedParent}}"
+                        Stroke="{Binding PopupBorderBrush, Source={RelativeSource TemplatedParent}}"
                         StrokeShape="{Binding PopupCornerRadius, Source={RelativeSource TemplatedParent}, Converter={StaticResource PopupCornerRadiusToStrokeShapeConverter}}"
-                        StrokeThickness="{TemplateBinding PopupBorderThickness}"
+                        StrokeThickness="{Binding PopupBorderThickness, Source={RelativeSource TemplatedParent}}"
                         Margin="-16"
                         Grid.ColumnSpan="2"
                         />
@@ -446,10 +446,10 @@
                     >
                     <!-- Popup Background -->
                     <Border
-                        Background="{TemplateBinding PopupBackground}"
-                        Stroke="{TemplateBinding PopupBorderBrush}"
+                        Background="{Binding PopupBackground, Source={RelativeSource TemplatedParent}}"
+                        Stroke="{Binding PopupBorderBrush, Source={RelativeSource TemplatedParent}}"
                         StrokeShape="{Binding PopupCornerRadius, Source={RelativeSource TemplatedParent}, Converter={StaticResource PopupCornerRadiusToStrokeShapeConverter}}"
-                        StrokeThickness="{TemplateBinding PopupBorderThickness}"
+                        StrokeThickness="{Binding PopupBorderThickness, Source={RelativeSource TemplatedParent}}"
                         Grid.RowSpan="4"
                         Margin="-24"
                         HorizontalOptions="Fill"
@@ -539,10 +539,10 @@
                     >
                     <!-- Popup Background -->
                     <Border
-                        Background="{TemplateBinding PopupBackground}"
-                        Stroke="{TemplateBinding PopupBorderBrush}"
+                        Background="{Binding PopupBackground, Source={RelativeSource TemplatedParent}}"
+                        Stroke="{Binding PopupBorderBrush, Source={RelativeSource TemplatedParent}}"
                         StrokeShape="{Binding PopupCornerRadius, Source={RelativeSource TemplatedParent}, Converter={StaticResource PopupCornerRadiusToStrokeShapeConverter}}"
-                        StrokeThickness="{TemplateBinding PopupBorderThickness}"
+                        StrokeThickness="{Binding PopupBorderThickness, Source={RelativeSource TemplatedParent}}"
                         Margin="-24"
                         Grid.RowSpan="3"
                         HorizontalOptions="Fill"
@@ -739,10 +739,10 @@
                     >
                     <!-- Popup Background -->
                     <Border
-                        Background="{TemplateBinding PopupBackground}"
-                        Stroke="{TemplateBinding PopupBorderBrush}"
+                        Background="{Binding PopupBackground, Source={RelativeSource TemplatedParent}}"
+                        Stroke="{Binding PopupBorderBrush, Source={RelativeSource TemplatedParent}}"
                         StrokeShape="{Binding PopupCornerRadius, Source={RelativeSource TemplatedParent}, Converter={StaticResource PopupCornerRadiusToStrokeShapeConverter}}"
-                        StrokeThickness="{TemplateBinding PopupBorderThickness}"
+                        StrokeThickness="{Binding PopupBorderThickness, Source={RelativeSource TemplatedParent}}"
                         Grid.RowSpan="2"
                         Margin="-24"
                         HorizontalOptions="Fill"
@@ -843,10 +843,10 @@
                     >
                     <!-- Popup Background -->
                     <Border
-                        Background="{TemplateBinding PopupBackground}"
-                        Stroke="{TemplateBinding PopupBorderBrush}"
+                        Background="{Binding PopupBackground, Source={RelativeSource TemplatedParent}}"
+                        Stroke="{Binding PopupBorderBrush, Source={RelativeSource TemplatedParent}}"
                         StrokeShape="{Binding PopupCornerRadius, Source={RelativeSource TemplatedParent}, Converter={StaticResource PopupCornerRadiusToStrokeShapeConverter}}"
-                        StrokeThickness="{TemplateBinding PopupBorderThickness}"
+                        StrokeThickness="{Binding PopupBorderThickness, Source={RelativeSource TemplatedParent}}"
                         Margin="-24"
                         Grid.RowSpan="2"
                         />
@@ -923,10 +923,10 @@
                     >
                     <!-- Popup Background -->
                     <Border
-                        Background="{TemplateBinding PopupBackground}"
-                        Stroke="{TemplateBinding PopupBorderBrush}"
+                        Background="{Binding PopupBackground, Source={RelativeSource TemplatedParent}}"
+                        Stroke="{Binding PopupBorderBrush, Source={RelativeSource TemplatedParent}}"
                         StrokeShape="{Binding PopupCornerRadius, Source={RelativeSource TemplatedParent}, Converter={StaticResource PopupCornerRadiusToStrokeShapeConverter}}"
-                        StrokeThickness="{TemplateBinding PopupBorderThickness}"
+                        StrokeThickness="{Binding PopupBorderThickness, Source={RelativeSource TemplatedParent}}"
                         Grid.RowSpan="2"
                         Grid.ColumnSpan="2"
                         Margin="-24"
@@ -1014,10 +1014,10 @@
                     >
                     <!-- Popup Background -->
                     <Border
-                        Background="{TemplateBinding PopupBackground}"
-                        Stroke="{TemplateBinding PopupBorderBrush}"
+                        Background="{Binding PopupBackground, Source={RelativeSource TemplatedParent}}"
+                        Stroke="{Binding PopupBorderBrush, Source={RelativeSource TemplatedParent}}"
                         StrokeShape="{Binding PopupCornerRadius, Source={RelativeSource TemplatedParent}, Converter={StaticResource PopupCornerRadiusToStrokeShapeConverter}}"
-                        StrokeThickness="{TemplateBinding PopupBorderThickness}"
+                        StrokeThickness="{Binding PopupBorderThickness, Source={RelativeSource TemplatedParent}}"
                         Margin="-24,-16"
                         Grid.ColumnSpan="2"
                         />
