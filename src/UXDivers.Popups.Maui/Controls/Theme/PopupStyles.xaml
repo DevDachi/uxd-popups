@@ -598,13 +598,12 @@
                 <!-- Main Container -->
                 <Grid
                     x:DataType="local:ListActionPopup"
-                    RowDefinitions="Auto,*,Auto"
+                    RowDefinitions="Auto,Auto,Auto"
                     Margin="{DynamicResource AirSpacing}"
                     RowSpacing="{DynamicResource SpacingMedium}"
                     Padding="{DynamicResource PopupAirSpacing}"
                     VerticalOptions="Center"
                     WidthRequest="{OnIdiom Default=-1, Tablet=400 , Desktop=400}"
-                    MaximumHeightRequest="{OnIdiom Default=500, Tablet=600, Desktop=600}"
                     >
                     <!-- Decoration Background -->
                     <BoxView
@@ -652,7 +651,13 @@
                     </Grid>
                     
                     <!-- Content -->
-                    <ScrollView Grid.Row="1">
+                    <ScrollView 
+                        Grid.Row="1"
+                        VerticalScrollBarVisibility="{ OnIdiom Default=Never, Desktop=Default }"
+                        MaximumHeightRequest="{OnIdiom Default=300, Tablet=500, Desktop=500}"
+                        Margin="{ OnIdiom Default=0, Desktop='0,0,-15,0' }"
+                        Padding="{ OnIdiom Default=0, Desktop='0,0,15,0' }"
+                        >
                         <VerticalStackLayout
                             x:DataType="local:ListActionPopup"
                             Spacing="{DynamicResource SpacingMedium}"
@@ -724,10 +729,9 @@
                     x:DataType="local:OptionSheetPopup"
                     WidthRequest="{OnIdiom Default=-1, Tablet=400 , Desktop=400}"
                     VerticalOptions="{OnIdiom Default=End, Tablet=Center , Desktop=Center}"
-                    RowDefinitions="Auto,*"
+                    RowDefinitions="Auto,Auto"
                     RowSpacing="{DynamicResource SpacingMedium}"
                     Padding="{DynamicResource PopupAirSpacing}"
-                    MaximumHeightRequest="{OnIdiom Default=500, Tablet=600, Desktop=600}"
                     >
                     <!-- Popup Background -->
                     <Border
@@ -776,7 +780,13 @@
                             StrokeLineCap="Round"/>
                     </Grid>                    
                     <!-- Item List -->
-                    <ScrollView Grid.Row="1">
+                    <ScrollView 
+                        Grid.Row="1"
+                        VerticalScrollBarVisibility="{ OnIdiom Default=Never, Desktop=Default }"
+                        MaximumHeightRequest="{OnIdiom Default=600, Tablet=800, Desktop=800}"
+                        Margin="{ OnIdiom Default=0, Desktop='0,0,-15,0' }"
+                        Padding="{ OnIdiom Default=0, Desktop='0,0,15,0' }"
+                        >
                         <VerticalStackLayout
                             BindableLayout.ItemsSource="{Binding Groups, Source={RelativeSource TemplatedParent}}"
                             Spacing="{DynamicResource SpacingMedium}"
