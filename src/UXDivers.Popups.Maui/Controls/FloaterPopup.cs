@@ -64,4 +64,20 @@ public class FloaterPopup : PopupPage
         get { return (string)GetValue(TextProperty); }
         set { SetValue(TextProperty, value); }
     }
+
+    public static readonly BindableProperty VerticalPositionProperty = BindableProperty.Create(
+        nameof(VerticalPosition),
+        typeof(VerticalPosition),
+        typeof(FloaterPopup),
+        VerticalPosition.Top);
+
+    /// <summary>
+    /// Gets or sets the vertical position of the popup on the screen.
+    /// Default value is <see cref="VerticalPosition.Top"/>.
+    /// </summary>
+    public VerticalPosition VerticalPosition
+    {
+        get { return (VerticalPosition)GetValue(VerticalPositionProperty); }
+        set { SetValue(VerticalPositionProperty, value); }
+    }
 }
