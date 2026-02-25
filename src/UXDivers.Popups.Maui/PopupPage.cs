@@ -181,6 +181,27 @@ namespace UXDivers.Popups.Maui
         }
 
         /// <summary>
+        /// Bindable property for enabling automatic keyboard avoidance.
+        /// When true, the popup adjusts its bottom padding so that focused input fields
+        /// are not obscured by the on-screen keyboard.
+        /// </summary>
+        public static readonly BindableProperty KeyboardAwarenessProperty = BindableProperty.Create(
+            nameof(KeyboardAwareness),
+            typeof(bool),
+            typeof(PopupPage),
+            true);
+
+        /// <summary>
+        /// Gets or sets whether the popup automatically adjusts its layout to avoid the
+        /// on-screen (soft) keyboard. Default is <c>true</c>.
+        /// </summary>
+        public bool KeyboardAwareness
+        {
+            get => (bool)GetValue(KeyboardAwarenessProperty);
+            set => SetValue(KeyboardAwarenessProperty, value);
+        }
+
+        /// <summary>
         /// Bindable property for specifying popup corner radius.
         /// </summary>
         public static readonly BindableProperty PopupCornerRadiusProperty = BindableProperty.Create(

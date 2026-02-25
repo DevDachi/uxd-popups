@@ -8,6 +8,77 @@ namespace UXDivers.Popups.Maui;
 internal partial class NativePopupManager
 {
     /// <summary>
+    /// Monitors global layout changes to detect keyboard visibility and adjust popup padding.
+    /// </summary>
+    private sealed class KeyboardGlobalLayoutListener : Java.Lang.Object, ViewTreeObserver.IOnGlobalLayoutListener
+    {
+        private readonly Android.Views.View _nativeView;
+        private readonly PopupPage _popup;
+        private readonly float _density;
+        private readonly double _widthDp;
+        private readonly double _heightDp;
+        private readonly Thickness _basePadding;
+        private readonly Android.Graphics.Rect _visibleRect = new();
+        private double _lastKeyboardHeight = -1;
+
+        public KeyboardGlobalLayoutListener(
+            Android.Views.View nativeView,
+            PopupPage popup,
+            float density,
+            double widthDp,
+            double heightDp,
+            Thickness basePadding)
+        {
+            _nativeView = nativeView;
+            _popup = popup;
+            _density = density;
+            _widthDp = widthDp;
+            _heightDp = heightDp;
+            _basePadding = basePadding;
+        }
+
+        public void OnGlobalLayout()
+        {
+            // Guard against the listener firing after the native view has been disposed.
+            if (_nativeView.Handle == IntPtr.Zero)
+                return;
+
+            _nativeView.GetWindowVisibleDisplayFrame(_visibleRect);
+
+            // RootView height represents the full window height (edge-to-edge).
+            var screenHeightPx = _nativeView.RootView?.Height ?? (int)(_heightDp * _density);
+            var keyboardHeightPx = screenHeightPx - _visibleRect.Bottom;
+            var keyboardHeightDp = keyboardHeightPx / _density;
+
+            // 50dp threshold: anything smaller is a nav-bar or minor inset, not a keyboard.
+            const double threshold = 50.0;
+            var effectiveHeight = keyboardHeightDp > threshold ? keyboardHeightDp : 0.0;
+
+            // Skip if no meaningful change to avoid unnecessary layouts.
+            if (Math.Abs(effectiveHeight - _lastKeyboardHeight) < 1.0)
+                return;
+
+            _lastKeyboardHeight = effectiveHeight;
+
+            _popup.Padding = new Thickness(
+                _basePadding.Left,
+                _basePadding.Top,
+                _basePadding.Right,
+                _basePadding.Bottom + effectiveHeight);
+
+            _popup.Arrange(new Rect(0, 0, _widthDp, _heightDp));
+            _nativeView.RequestLayout();
+        }
+    }
+
+    private sealed record KeyboardAvoidanceState(
+        KeyboardGlobalLayoutListener Listener,
+        Android.Views.View NativeView);
+
+    // Keyed by the native view's Handle so we can clean up when closing.
+    private readonly Dictionary<IntPtr, KeyboardAvoidanceState> _keyboardStates = new();
+
+    /// <summary>
     /// Displays a native view for the given popup page.
     /// </summary>
     /// <param name="popup">The popup page to display.</param>
@@ -103,7 +174,6 @@ internal partial class NativePopupManager
         var finalRightInset = popupSafeAreaInsets.HasFlag(SafeAreaAsPadding.Right) ? rightInset : 0;
         var finalBottomInset = popupSafeAreaInsets.HasFlag(SafeAreaAsPadding.Bottom) ? bottomInset : 0;
 
-        // nativeView.SetPadding(finalLeftInset, finalTopInset, finalRightInset, finalBottomInset);
         popup.Padding = new Thickness(
             popup.Padding.Left + finalLeftInset,
             popup.Padding.Top + finalTopInset,
@@ -112,6 +182,15 @@ internal partial class NativePopupManager
         );
 
         rootView.AddView(nativeView, layoutParams);
+
+        // Subscribe to layout changes to detect keyboard appearance and adjust popup padding.
+        if (popup.KeyboardAwareness)
+        {
+            var basePadding = popup.Padding;
+            var listener = new KeyboardGlobalLayoutListener(nativeView, popup, density, widthDip, heightDip, basePadding);
+            nativeView.ViewTreeObserver?.AddOnGlobalLayoutListener(listener);
+            _keyboardStates[nativeView.Handle] = new KeyboardAvoidanceState(listener, nativeView);
+        }
 
         return Task.FromResult<object>(nativeView);
     }
@@ -135,6 +214,15 @@ internal partial class NativePopupManager
         {
             // The view has already been disposed
             return Task.CompletedTask;
+        }
+
+        // Unregister keyboard layout listener before disposing the view.
+        if (_keyboardStates.TryGetValue(nativeView.Handle, out var state))
+        {
+            if (nativeView.ViewTreeObserver?.IsAlive == true)
+                nativeView.ViewTreeObserver.RemoveOnGlobalLayoutListener(state.Listener);
+            state.Listener.Dispose();
+            _keyboardStates.Remove(nativeView.Handle);
         }
 
         // Remove the native view from its parent and dispose of it

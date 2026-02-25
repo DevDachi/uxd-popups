@@ -1,3 +1,5 @@
+using CoreGraphics;
+using Foundation;
 using Microsoft.Maui.Platform;
 using UIKit;
 
@@ -7,6 +9,16 @@ namespace UXDivers.Popups.Maui;
 /// Handles the display and removal of native popups on iOS.
 internal partial class NativePopupManager
 {
+    /// <summary>
+    /// Stores the notification observer tokens needed to unsubscribe when the popup is closed.
+    /// </summary>
+    private sealed record KeyboardAvoidanceState(
+        NSObject ShowObserver,
+        NSObject HideObserver);
+
+    // Keyed by the native view's Handle so we can clean up when closing.
+    private readonly Dictionary<IntPtr, KeyboardAvoidanceState> _keyboardStates = new();
+
     /// <summary>
     /// Displays a native view for the given popup page.
     /// </summary>
@@ -75,7 +87,93 @@ internal partial class NativePopupManager
         // Add the native popup to the window
         window.AddSubview(nativePopup);
 
+        // Subscribe to keyboard notifications so the popup scrolls content above the keyboard.
+        if (popup.KeyboardAwareness)
+        {
+            SubscribeToKeyboardNotifications(popup, nativePopup, frame);
+        }
+
         return Task.FromResult<object>(nativePopup);
+    }
+
+    private void SubscribeToKeyboardNotifications(PopupPage popup, UIView nativeView, CGRect frame)
+    {
+        // Capture the padding that was applied right after safe-area adjustment.
+        var basePadding = popup.Padding;
+
+        NSObject showObserver = NSNotificationCenter.DefaultCenter.AddObserver(
+            UIKeyboard.WillShowNotification,
+            notification => OnKeyboardWillShow(notification, nativeView, popup, frame, basePadding));
+
+        NSObject hideObserver = NSNotificationCenter.DefaultCenter.AddObserver(
+            UIKeyboard.WillHideNotification,
+            notification => OnKeyboardWillHide(notification, nativeView, popup, frame, basePadding));
+
+        _keyboardStates[nativeView.Handle] = new KeyboardAvoidanceState(showObserver, hideObserver);
+    }
+
+    private static void OnKeyboardWillShow(
+        NSNotification notification,
+        UIView nativeView,
+        PopupPage popup,
+        CGRect frame,
+        Thickness basePadding)
+    {
+        // Guard against the callback firing after the native view has been disposed.
+        if (nativeView.Handle == IntPtr.Zero)
+            return;
+
+        if (notification.UserInfo == null)
+            return;
+
+        if (notification.UserInfo[UIKeyboard.FrameEndUserInfoKey] is not NSValue keyboardFrameValue)
+            return;
+
+        // Keyboard frame is in window coordinates on iOS.
+        var keyboardFrame = keyboardFrameValue.CGRectValue;
+
+        // How much of the window's bottom does the keyboard cover?
+        var keyboardCoverage = frame.Height - keyboardFrame.Top;
+        if (keyboardCoverage <= 0)
+            return;
+
+        // Apply the new bottom padding so popup layout pushes content up.
+        popup.Padding = new Thickness(
+            basePadding.Left,
+            basePadding.Top,
+            basePadding.Right,
+            basePadding.Bottom + keyboardCoverage);
+
+        var duration = (notification.UserInfo[UIKeyboard.AnimationDurationUserInfoKey] as NSNumber)?.DoubleValue ?? 0.25;
+        UIView.Animate(duration, () =>
+        {
+            popup.Arrange(new Rect(0, 0, frame.Width, frame.Height));
+            nativeView.SetNeedsLayout();
+            nativeView.LayoutIfNeeded();
+        });
+    }
+
+    private static void OnKeyboardWillHide(
+        NSNotification notification,
+        UIView nativeView,
+        PopupPage popup,
+        CGRect frame,
+        Thickness basePadding)
+    {
+        // Guard against the callback firing after the native view has been disposed.
+        if (nativeView.Handle == IntPtr.Zero)
+            return;
+
+        // Restore the original padding (without keyboard offset).
+        popup.Padding = basePadding;
+
+        var duration = (notification.UserInfo?[UIKeyboard.AnimationDurationUserInfoKey] as NSNumber)?.DoubleValue ?? 0.25;
+        UIView.Animate(duration, () =>
+        {
+            popup.Arrange(new Rect(0, 0, frame.Width, frame.Height));
+            nativeView.SetNeedsLayout();
+            nativeView.LayoutIfNeeded();
+        });
     }
 
     /// <summary>
@@ -112,6 +210,16 @@ internal partial class NativePopupManager
         if (nativeView.Handle == IntPtr.Zero)
         {
             return Task.CompletedTask; // The view is already disposed
+        }
+
+        // Unsubscribe keyboard observers for this popup before disposing.
+        if (_keyboardStates.TryGetValue(nativeView.Handle, out var state))
+        {
+            NSNotificationCenter.DefaultCenter.RemoveObserver(state.ShowObserver);
+            NSNotificationCenter.DefaultCenter.RemoveObserver(state.HideObserver);
+            state.ShowObserver.Dispose();
+            state.HideObserver.Dispose();
+            _keyboardStates.Remove(nativeView.Handle);
         }
 
         // Remove the native view from its superview and dispose of it
